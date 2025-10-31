@@ -176,6 +176,9 @@ body {
   .footer-link[href*="x.com"] img {
     width: 38.4px; /* 80% of 48px */
     height: auto;
+    /* Add vertical padding to align with other images */
+    padding: 4.8px 0; /* (48px - 38.4px) / 2 = 4.8px on top and bottom */
+    box-sizing: content-box;
   }
   .footer-link span { display: block; letter-spacing: .02em }
 
@@ -183,5 +186,11 @@ body {
     .footer-links { gap: 18px; }
     .footer-link img { width: 40px; height: 40px; }
     /* mobile: twitter icon at 80% of 40px */
-    .footer-link[href*="x.com"] img { width: 32px; height: auto; }
+    .footer-link[href*="x.com"] img { 
+      width: 32px; 
+      height: auto; 
+      /* Add vertical padding for mobile to align with other images */
+      padding: 4px 0; /* (40px - 32px) / 2 = 4px on top and bottom */
+      box-sizing: content-box;
+    }
   }
