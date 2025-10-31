@@ -1,0 +1,67 @@
+@font-face {
+  font-family: 'SmartFontUI';
+  src: url('../assets/fonts/SmartFontUI.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  font-family: 'SmartFontUI', system-ui, -apple-system, 'Hiragino Kaku Gothic ProN', 'メイリオ', sans-serif;
+  background-color: #eadfca;
+  margin: 0;
+  padding: 36px 16px;
+  color: #494949;
+}
+
+.sorry-container{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height: calc(100vh - 72px);
+}
+
+.sorry-box{
+  background: #f6efe4; /* slightly lighter card like contact/newsbox */
+  max-width: 720px;
+  width: 100%;
+  padding: 32px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  text-align: center;
+}
+
+.sorry-ghost{
+  width: 160px;
+  height: auto;
+  display:block;
+  margin: 0 auto 18px;
+  opacity: 0.98;
+}
+
+.sorry-box h1{
+  margin: 6px 0 8px;
+  font-size: 26px;
+}
+.lead{ font-size: 18px; margin: 6px 0 12px; }
+.explain{ color: #5b5b5b; font-size: 14px; margin-bottom: 18px; }
+
+/* use site nav-button visuals; keep underline suppressed */
+.nav-button {
+  margin-top: 8px;
+  padding: 10px 20px;
+  display: inline-block;
+  border-radius: 9999px;
+  border: 3px dotted #494949;
+  background: #f0ebe2;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.nav-button, .nav-button:visited, .nav-button:hover, .nav-button:focus { text-decoration: none; }
+
+@media (max-width: 520px){
+  .sorry-box{ padding: 20px; }
+  .sorry-ghost{ width: 120px; }
+}

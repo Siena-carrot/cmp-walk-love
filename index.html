@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>メインページ</title>
+  <script>
+    // Early check to avoid flicker: mark document if splash should be active this session
+    (function(){
+      try{
+        var shown = sessionStorage.getItem('indexSplashShown');
+        var ref = document.referrer || '';
+        var shouldShow = false;
+        if (shown !== 'true'){
+          if (!ref) {
+            shouldShow = true;
+          } else {
+            try{ var r = new URL(ref); if (r.origin !== location.origin) shouldShow = true; }catch(e){ shouldShow = true; }
+          }
+        }
+        if (shouldShow) document.documentElement.classList.add('splash-active');
+      }catch(e){}
+      fetch('https://rd.maltonn.com/log?c=cmpwalk&action=visit').then(()=>{}).catch(()=>{});
+    })();
+  </script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <h1 class="site-header">
+    <a class="site-logo" href="index.html" aria-label="サイトトップへ">
+      <img src="assets/images/header.png" alt="大阪大学CMP-walk愛好会" style="max-width:810px;width:100%;height:auto;display:inline-block">
+    </a>
+  </h1>
+
+  <!-- Splash overlay: shown only when arriving from outside the site -->
+  <div id="splashOverlay" class="splash-overlay" role="dialog" aria-hidden="true">
+    <div class="splash-inner" aria-hidden="true">
+      <img src="assets/images/header.png" alt="大阪大学CMP-walk愛好会">
+    </div>
+  </div>
+
+  <div class="description-box">
+    こんにちは！<br>
+    わたしたちは、大阪大学豊中キャンパスにある「Campus Museum Project 散策コース」の愛好会です！<br>
+    このサイトは最初の活動として制作した会員おすすめのオブジェ紹介サイトです！<br>
+    気になるオブジェがあったらぜひ足を運んでみてくださいね。
+  </div>
+  
+  <button class="nav-button" onclick="location.href='object/index.html'">会員おすすめのオブジェクトを見る</button>
+    <script src="index.js"></script>
+    
+    <!-- footer: quick links -->
+    <footer class="site-footer">
+      <nav class="footer-links" aria-label="サイトフッターナビ">
+        <a class="footer-link" href="news/index.html">
+          <img src="assets/images/news.png" alt="news">
+          <span>news</span>
+        </a>
+        <a class="footer-link" href="https://x.com/UOsaka_CMPwalk" target="_blank" rel="noopener noreferrer">
+          <img src="assets/images/twitter.png" alt="twitter">
+          <span>sns</span>
+        </a>
+        <a class="footer-link" href="contact/index.html">
+          <img src="assets/images/mail.png" alt="contact">
+          <span>contact</span>
+        </a>
+      </nav>
+    </footer>
+</body>
+</html>

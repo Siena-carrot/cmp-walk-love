@@ -1,0 +1,187 @@
+/* index.css — extracted from inline styles in index.html */
+
+/* Local font: SmartFontUI for the main page */
+@font-face {
+  font-family: 'SmartFontUI';
+  src: url('assets/fonts/SmartFontUI.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+/* Splash overlay shown only when arriving from outside the site */
+/* Use an opaque background so the underlying page is not visible while splash is active */
+.splash-overlay{
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#eadfca; /* fully opaque to hide the page */
+  z-index:99999;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity 600ms cubic-bezier(.2,.9,.2,1);
+}
+/* If the documentElement has .splash-active (set very early), make overlay visible immediately
+   and keep the rest of the page hidden to avoid flicker. */
+html.splash-active .splash-overlay{
+  opacity:1 !important;
+  pointer-events:auto !important;
+}
+.splash-inner{
+  max-width:100%;
+  text-align:center;
+  /* use fixed positioning so centering is robust across mobile browsers */
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  /* center precisely in both axes; small initial scale for subtle animation */
+  transform: translate(-50%, -50%) scale(0.985);
+  transition: transform 600ms cubic-bezier(.2,.9,.2,1), opacity 600ms ease;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+/* When splash-active is present, make inner visible immediately to avoid initial blank state */
+html.splash-active .splash-inner{
+  transform: translate(-50%, -50%) scale(1) !important;
+  opacity: 1 !important;
+}
+.splash-overlay.visible{
+  opacity:1;
+  pointer-events:auto;
+}
+.splash-overlay.visible .splash-inner{
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+/* Hide all page children except the overlay while splash-active to prevent flicker */
+html.splash-active body > *:not(#splashOverlay){
+  visibility:hidden !important;
+  pointer-events:none !important;
+}
+.splash-inner img{max-width:810px;width:60vw;height:auto;display:block;margin:0 auto}
+@media (min-width:900px){
+  .splash-inner img{width:auto}
+}
+
+/* Page basic styles */
+body {
+  /* Use local SmartFontUI with sensible fallbacks */
+  font-family: 'SmartFontUI', system-ui, -apple-system, 'Hiragino Kaku Gothic ProN', 'メイリオ', sans-serif;
+  text-align: center; /* overall layout center-aligned */
+  margin-top: 50px;
+  /* Page background color requested */
+  background-color: #eadfca;
+  /* make default text color for the index page */
+  color: #494949;
+}
+
+.description-box {
+  /* Center the box as an element, but left-align its text content */
+  background-color: transparent;
+  padding: 8px 0;
+  margin: 30px auto;
+  width: 80%;
+  max-width: 600px;
+  font-size: 16px;
+  border: none;
+  color: #494949; /* ensure good contrast against the page background */
+  text-align: left; /* only the description text is left-aligned */
+  /* Use explicit <br> for line breaks; allow normal wrapping otherwise */
+  white-space: normal;
+  word-break: break-word;
+}
+
+.nav-button {
+  margin-top: 40px;
+  padding: 10px 22px;
+  font-size: 16px;
+  display: inline-block;
+  /* ① 角を極限まで丸く */
+  border-radius: 9999px;
+  /* ② 粗めの点線、③ 枠線を太く */
+  border: 3px dotted #494949;
+  /* Fill: slightly translucent version of the page background */
+  background: #f0ebe2;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Ensure nav-button anchors never show an underline in visited/hover/focus states */
+.nav-button,
+.nav-button:visited,
+.nav-button:hover,
+.nav-button:focus {
+  text-decoration: none;
+}
+
+/* Mobile-specific adjustments for index.html
+   - left-align the page content on small screens
+   - change description wrapping so mobile reflows content (different line-break positions)
+*/
+@media (max-width: 768px) {
+  body {
+    text-align: left;
+    margin-top: 20px; /* reduce top margin for small screens */
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  /* On mobile, let the description reflow naturally so line breaks can change
+     (desktop keeps white-space: pre-wrap to preserve author line breaks). */
+  .description-box {
+    width: 100%;
+    max-width: none;
+    margin: 18px 0;
+    font-size: 16px;
+    white-space: normal; /* allow reflow/wrapping at different positions */
+    hyphens: auto;
+    word-break: break-word;
+  }
+
+  .splash-inner img{ width: 90vw; max-width: 540px }
+}
+
+/* Ensure the nav button remains centered on small screens even when body text-align is left */
+@media (max-width: 768px) {
+  .nav-button { display: block; margin: 18px auto; }
+}
+
+  /* Footer quick-links row (news / sns / contact) */
+  .site-footer {
+    margin-top: 40px;
+    padding: 18px 0 40px;
+  }
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    align-items: center;
+  }
+  .footer-link {
+    display: inline-block;
+    text-align: center;
+    color: inherit;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  .footer-link img {
+    width: 48px;
+    height: 48px;
+    display: block;
+    margin: 0 auto 8px;
+  }
+  /* Make only the twitter (X) icon slightly smaller to compensate for its original image size */
+  .footer-link[href*="x.com"] img {
+    width: 38.4px; /* 80% of 48px */
+    height: auto;
+  }
+  .footer-link span { display: block; letter-spacing: .02em }
+
+  @media (max-width: 420px) {
+    .footer-links { gap: 18px; }
+    .footer-link img { width: 40px; height: 40px; }
+    /* mobile: twitter icon at 80% of 40px */
+    .footer-link[href*="x.com"] img { width: 32px; height: auto; }
+  }

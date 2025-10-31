@@ -1,0 +1,151 @@
+@font-face {
+  font-family: 'SmartFontUI';
+  src: url('../../assets/fonts/SmartFontUI.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  font-family: 'SmartFontUI', system-ui, -apple-system, 'Hiragino Kaku Gothic ProN', 'メイリオ', sans-serif;
+  background-color: #eadfca;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+}
+
+.object-container {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #cad8df;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.description {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.status {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.status.error {
+  color: #c00;
+}
+
+.status.normal {
+  color: #080;
+}
+
+.photos {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.photos img {
+  width: 45%;
+  border-radius: 4px;
+}
+
+.map-section {
+  margin-top: 20px;
+}
+
+.map-section img {
+  width: 100%;
+  border-radius: 6px;
+  margin-top: 15px;
+}
+
+.puzzle-box {
+  background-color: #fff8e1;
+  padding: 15px;
+  border-radius: 6px;
+  margin-top: 20px;
+  font-size: 15px;
+}
+
+.choices {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.choices img {
+  width: 45%;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.choices img:hover {
+  transform: scale(1.05);
+}
+
+.back-button {
+  margin-top: 30px;
+}
+
+#lockMessage {
+  color: red;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+/* Responsive tweaks for small screens */
+@media (max-width: 768px) {
+  body { padding: 12px; }
+  .object-container { max-width: 100%; margin: 0 8px; padding: 14px; }
+  .photos { flex-direction: column; }
+  .photos img { width: 100%; }
+  .map-section img { max-height: 240px; object-fit: cover; }
+}
+
+@media (max-width: 420px) {
+  h1 { font-size: 20px; }
+  .description { font-size: 15px; }
+}
+
+/* Shared obje page tweaks: button styles and spacing (from obje1) */
+.btn-back, .btn-map {
+  font-family: 'SmartFontUI', system-ui, -apple-system, 'Hiragino Kaku Gothic ProN', 'メイリオ', sans-serif;
+  font-size: 14px;
+  padding: 8px 14px;
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+  transition: background 160ms ease, transform 120ms ease;
+  transform: scale(1.2);
+  transform-origin: center;
+}
+.btn-back {
+  border-radius: 9999px;
+  border: 2px dotted #333;
+  background: transparent;
+  color: inherit;
+}
+.btn-map {
+  border: none;
+  background: #f0f0f0;
+  color: inherit;
+  border-radius: 6px;
+}
+.map-section { margin-bottom: 32px; }
+.photos { margin-top: 28px; }
+.map-section img { margin-top: 20px !important; }
+
+/* Ensure puzzle-box background is white (override older variants) */
+.puzzle-box { background-color: #fff; }
